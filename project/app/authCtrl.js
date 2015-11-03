@@ -1,5 +1,16 @@
 app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
     //initially set those objects to null to avoid undefined error
+    //
+    //
+    //
+    if ($routeParams.key){
+      Data.post('validate', {
+          key: $routeParams.key
+      }).then(function (results) {
+          Data.toast(results);
+      });
+    }
+
     $scope.login = {};
     $scope.signup = {};
     $scope.doLogin = function (customer) {

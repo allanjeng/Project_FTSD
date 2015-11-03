@@ -71,7 +71,7 @@ $app->post('/signUp', function() use ($app) {
         $result = $db->insertIntoTable($r->customer, $column_names, $tabble_name);
         if ($result != NULL) {
             $db = new DbHandler();
-            $key = $name . $email . $password;
+            $key = $name . $email;
             $key = md5($key);
             $confirm_tabble_name = "confirm";
             $confirm_column_names  = array('id', 'validation_key', 'email');
@@ -105,12 +105,19 @@ $app->post('/signUp', function() use ($app) {
     }
 });
 
-$app->get('/validate', function () {
-    $key = $app->request()->get('key');
+$app->post('/validate', function () use ($app) {
+    $response = array();
+    $r = json_decode($app->request->getBody());
+    $key = $r->key;
     $db = new DbHandler();
-    $email = $db->getOneRecord("select email from confirm where validation_key='$key'");
-    $uid = $db->getOneRecord("select uid from users where email='$email'");
+    $dbemail = $db->getOneRecord("select email from confirm where validation_key='$key'");
+    $email = $dbemail['email'];
+    $dbuid = $db->getOneRecord("select uid from users where email='$email'");
+    $uid = $dbuid['uid'];
     $db->updateOneRecord("update users set active = '1' where uid='$uid'");
+    $response["status"] = "success";
+    $response["message"] = "Account activated.";
+    echoResponse(200, $response);
 });
 
 
@@ -122,5 +129,49 @@ $app->get('/logout', function() {
     echoResponse(200, $response);
 });
 
+$app->post('/forgotPassword', function () use ($app) {
+    $response = array();
+    $r = json_decode($app->request->getBody());
+    $email = $r->email;
+    $db = new DbHandler();
+    $result = $db->getOneRecord("select email,active,name from users where email='$email'");
+    if ($result == null) {
+      $response["status"] = "error";
+      $response["message"] = "No email account found.";
+      echoResponse(201, $response);
+    } elseif ($result['active'] == "0") {
+      $response["status"] = "error";
+      $response["message"] = "Email account not active yet. Check your email.";
+      echoResponse(201, $response);
+    } else {
+      $email = $result['email'];
+      $name = $result['name'];
+      $key = $name . $email;
+      $key = md5($key);
+      $mails = new emailConfirmation();
+      $response["status"] = "success";
+      $response["message"] = "Account reset link sent to email.";
+      echoResponse(200, $response);
+      $mails->sendForgotPasswordEmail($email, $name, $key);
+    }
+});
+
+$app->post('/resetPassword', function () use ($app) {
+    require_once 'passwordHash.php';
+    $response = array();
+    $r = json_decode($app->request->getBody());
+    $password_non = $r->password;
+    $password = passwordHash::hash($password_non);
+    $key = $r->key;
+    $db = new DbHandler();
+    $dbemail = $db->getOneRecord("select email from confirm where validation_key='$key'");
+    $email = $dbemail['email'];
+    $dbuid = $db->getOneRecord("select uid from users where email='$email'");
+    $uid = $dbuid['uid'];
+    $db->updateOneRecord("update users set password = '$password' where uid='$uid'");
+    $response["status"] = "success";
+    $response["message"] = "Account password sucessfully reset.";
+    echoResponse(200, $response);
+});
 
 ?>
