@@ -12,8 +12,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `address` varchar(50) NOT NULL,
   `DOB` varchar(50) NOT NULL,
   `role` varchar(50) NOT NULL,
-  ``
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `teamleadid` varchar(15),
+  `companyname` varchar(50),
+  `teamname` varchar(50),
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=187 ;
 
