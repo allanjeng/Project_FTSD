@@ -18,6 +18,16 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/signup.html',
                 controller: 'authCtrl'
             })
+            .when('/forgot_password', {
+                title: 'ForgotPassword',
+                templateUrl: 'partials/forgot_password.html',
+                controller: 'forgotPasswordCtrl'
+            })
+            .when('/reset_password/:key', {
+                title: 'ResetPassword',
+                templateUrl: 'partials/reset_password.html',
+                controller: 'resetPasswordCtrl'
+            })
             .when('/dashboard', {
                 title: 'Dashboard',
                 templateUrl: 'partials/dashboard.html',
