@@ -61,13 +61,16 @@ $app->post('/signUp', function() use ($app) {
     $email = $r->customer->email;
     $address = $r->customer->address;
     $password = $r->customer->password;
+    $companyname = $r->customer->companyname;
+    $teamname = $r->customer->teamname;
+    $teamleadid = $r->customer->teamleadid;
     $role = $r->customer->role;
     $r->customer->active = "0";
     $isUserExists = $db->getOneRecord("select 1 from users where email='$email'");
     if(!$isUserExists){
         $r->customer->password = passwordHash::hash($password);
         $tabble_name = "users";
-        $column_names = array('work_phone', 'mobile_phone', 'name', 'email', 'password', 'address', 'DOB', 'role', 'active');
+        $column_names = array('work_phone', 'mobile_phone', 'name', 'email', 'password', 'address', 'DOB', 'role', 'teamleadid', 'teamname', 'companyname', 'active');
         $result = $db->insertIntoTable($r->customer, $column_names, $tabble_name);
         if ($result != NULL) {
             $db = new DbHandler();
