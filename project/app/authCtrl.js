@@ -71,7 +71,7 @@ app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams,
         $scope.steps[$index].visited = true;
     };
     $scope.saveProject = function(){
-      /*  $http({ method: 'POST',
+        /*$http({ method: 'POST',
                 url: '/someUrl'
                 data: {id:$routeParams.id,
                        formValues:$scope.form}
@@ -80,7 +80,7 @@ app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams,
                 }, function errorCallback(response) {
                   // called asynchronously if an error occurs
                   // or server returns response with an error status.
-                });  */
+                });*/
 
        $location.path( "/dashboard" );
     };
