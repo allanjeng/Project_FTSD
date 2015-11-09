@@ -5,6 +5,7 @@ $app->get('/session', function() {
     $response["uid"] = $session['uid'];
     $response["email"] = $session['email'];
     $response["name"] = $session['name'];
+    $response["role"] = $session['role'];
     echoResponse(200, $session);
 });
 
@@ -23,7 +24,7 @@ $app->post('/login', function() use ($app) {
     $db = new DbHandler();
     $password = $r->customer->password;
     $email = $r->customer->email;
-    $user = $db->getOneRecord("select uid,name,password,email,created from users where email='$email' and active='1'");
+    $user = $db->getOneRecord("select uid,name,password,email,created,role from users where email='$email' and active='1'");
     if ($user != NULL) {
         if(passwordHash::check_password($user['password'],$password)){
         $response['status'] = "success";
@@ -32,12 +33,14 @@ $app->post('/login', function() use ($app) {
         $response['uid'] = $user['uid'];
         $response['email'] = $user['email'];
         $response['createdAt'] = $user['created'];
+        $resonpse['role'] = $user['role'];
         if (!isset($_SESSION)) {
             session_start();
         }
         $_SESSION['uid'] = $user['uid'];
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $user['name'];
+        $_SESSION['role'] = $user['role'];
         } else {
             $response['status'] = "error";
             $response['message'] = 'Login failed. Incorrect credentials';
@@ -66,8 +69,9 @@ $app->post('/signUp', function() use ($app) {
     $teamleadid = $r->customer->teamleadid;
     $role = $r->customer->role;
     $r->customer->active = "0";
+    $id_exists = $db->getOneRecord("select teamleadid from teamleadid where teamleadid='$teamleadid'");
     $isUserExists = $db->getOneRecord("select 1 from users where email='$email'");
-    if(!$isUserExists){
+    if(!$isUserExists && ($id_exists || ($role == 'team_member'))) {
         $r->customer->password = passwordHash::hash($password);
         $tabble_name = "users";
         $column_names = array('work_phone', 'mobile_phone', 'name', 'email', 'password', 'address', 'DOB', 'role', 'teamleadid', 'teamname', 'companyname', 'active');
@@ -82,7 +86,6 @@ $app->post('/signUp', function() use ($app) {
             $object = json_decode(json_encode($content), FALSE);
             $plz = $db->insertIntoTable($object, $confirm_column_names, $confirm_tabble_name);
 
-
             $response["status"] = "success";
             $response["message"] = "User account created successfully. Check email for validation.";
             $response["uid"] = $result;
@@ -93,6 +96,7 @@ $app->post('/signUp', function() use ($app) {
             $_SESSION['phone'] = $work_phone;
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
+            $_SESSION['email'] = $role;
             echoResponse(200, $response);
             $mails = new emailConfirmation();
             $mails->sendEmail($email, $name, $key);
@@ -104,6 +108,9 @@ $app->post('/signUp', function() use ($app) {
     }else{
         $response["status"] = "error";
         $response["message"] = "An user with the provided phone or email exists!";
+        if (!$id_exists && ($role == 'team_lead')) {
+          $response["message"] = "Invalid Team Lead Id used.";
+        }
         echoResponse(201, $response);
     }
 });

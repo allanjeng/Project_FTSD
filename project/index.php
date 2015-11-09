@@ -54,4 +54,5 @@
   <script src="app/directives.js"></script>
   <script src="app/authCtrl.js"></script>
   <script src="app/forgotPasswordCtrl.js"></script>
+  <script src="app/managementCtrl.js"></script>
 </html>

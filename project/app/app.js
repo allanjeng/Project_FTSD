@@ -48,6 +48,16 @@ app.config(['$routeProvider',
                 controller: 'authCtrl',
                 templateUrl: 'partials/login.html'
             })
+            .when('/team_member_role_management', {
+                title: 'Role Management',
+                controller: 'roleManagementCtrl',
+                templateUrl: 'partials/team_member_role_management.html'
+            })
+            .when('/user_managment', {
+                title: 'User Management',
+                controller: 'userManagmentCtrl',
+                templateUrl: 'partials/user_managment.html'
+            })
             .when('/', {
                 title: 'Login',
                 templateUrl: 'partials/login.html',
@@ -67,6 +77,7 @@ app.config(['$routeProvider',
                     $rootScope.uid = results.uid;
                     $rootScope.name = results.name;
                     $rootScope.email = results.email;
+                    $rootScope.role = results.role;
                 } else {
                     var nextUrl = next.$$route.originalPath;
                     if (nextUrl == '/signup' || nextUrl == '/login') {

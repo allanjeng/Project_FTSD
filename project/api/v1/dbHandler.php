@@ -18,6 +18,13 @@ class DbHandler {
         return $result = $r->fetch_assoc();
     }
     /**
+    * get many records
+    */
+    public function getRecords($query) {
+        $r = $this->conn->query($query) or die($this->conn->error.__LINE__);
+        return $result = $r->fetch_all();
+    }
+    /**
      * Creating new record
      */
     public function insertIntoTable($obj, $column_names, $table_name) {
@@ -61,6 +68,7 @@ public function getSession(){
         $sess["uid"] = $_SESSION['uid'];
         $sess["name"] = $_SESSION['name'];
         $sess["email"] = $_SESSION['email'];
+        $sess["role"] = $_SESSION['role'];
     }
     else
     {
@@ -79,6 +87,7 @@ public function destroySession(){
         unset($_SESSION['uid']);
         unset($_SESSION['name']);
         unset($_SESSION['email']);
+        unset($_SESSION['role']);
         $info='info';
         if(isSet($_COOKIE[$info]))
         {
