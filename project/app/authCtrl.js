@@ -85,3 +85,4 @@ app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams,
        $location.path( "/dashboard" );
     };
 });
+

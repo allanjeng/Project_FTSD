@@ -1,5 +1,4 @@
 app.controller('forgotPasswordCtrl', function ($scope, $rootScope, $routeParams, $location, $log, $http, Data) {
-
     $scope.submitEmail = function(){
       Data.post('forgotPassword', {
           email: $scope.email
