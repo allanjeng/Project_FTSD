@@ -1,5 +1,6 @@
 app.controller('notificiationsCtrl', function ($scope, $rootScope, $routeParams, $location, $log, $http, Data) {
-    $scope.addNotification = function(){
+    
+    //$scope.addNotification = function(){
         /*
         Data.post('resetPassword', {
             password: $scope.password,
@@ -11,8 +12,8 @@ app.controller('notificiationsCtrl', function ($scope, $rootScope, $routeParams,
             }
         });
         */
-    };
-    $scope.addNotification = function(){
+    //};
+    //$scope.addNotification = function(){
         /*
         Data.post('resetPassword', {
             password: $scope.password,
@@ -24,5 +25,5 @@ app.controller('notificiationsCtrl', function ($scope, $rootScope, $routeParams,
             }
         });
          */
-    };
+    //}
 });

@@ -48,7 +48,6 @@ app.config(['$routeProvider',
                 controller: 'authCtrl',
                 templateUrl: 'partials/login.html'
             })
-<<<<<<< Updated upstream
             .when('/team_member_role_management', {
                 title: 'Role Management',
                 controller: 'roleManagementCtrl',
@@ -59,7 +58,6 @@ app.config(['$routeProvider',
                 controller: 'userManagmentCtrl',
                 templateUrl: 'partials/user_managment.html'
             })
-=======
             .when('/unittest', {
                   title: 'Unit Test',
                   controller: 'unitTestCtrl',
@@ -69,7 +67,7 @@ app.config(['$routeProvider',
                 title: 'Notifications',
                 templateUrl: 'partials/notifications.html',
                 controller: 'notificiationsCtrl'
->>>>>>> Stashed changes
+            })
             .when('/', {
                 title: 'Login',
                 templateUrl: 'partials/login.html',

@@ -54,12 +54,6 @@
   <script src="app/directives.js"></script>
   <script src="app/authCtrl.js"></script>
   <script src="app/forgotPasswordCtrl.js"></script>
-<<<<<<< Updated upstream
   <script src="app/managementCtrl.js"></script>
-=======
 
-<!-- source files from sample -->
-<script src="src/Player.js"></script>
-<script src="src/Song.js"></script>
->>>>>>> Stashed changes
 </html>

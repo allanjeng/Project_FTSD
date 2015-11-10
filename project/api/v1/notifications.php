@@ -1,4 +1,4 @@
-<?php
+/*<?php
     $app->post('/addNotification', function () use ($app) {
         $response = array();
         $r = json_decode($app->request->getBody());
@@ -94,4 +94,4 @@
         $response["message"] = "Accepted '$notification' notification";
         echoResponse(200, $response);
     });
-?>
+?>*/
