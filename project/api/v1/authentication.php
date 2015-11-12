@@ -54,19 +54,44 @@ $app->post('/login', function() use ($app) {
 $app->post('/signUp', function() use ($app) {
     $response = array();
     $r = json_decode($app->request->getBody());
-    verifyRequiredParams(array('email', 'name', 'password', 'work_phone', 'DOB', 'role'),$r->customer);
+    verifyRequiredParams(array('email', 'name', 'password', 'work_phone', 'DOB', 'role', 'companyname'),$r->customer);
     require_once 'passwordHash.php';
     $db = new DbHandler();
-    $work_phone = $r->customer->work_phone;
-    $mobile_phone = $r->customer->mobile_phone;
+    try {
+      $work_phone = $r->customer->work_phone;
+    } catch (Exception $e) {
+      $work_phone = "";
+    }
+    try {
+      $mobile_phone = $r->customer->mobile_phone;
+    } catch (Exception $e) {
+      $mobile_phone = "";
+    }
+
     $DOB = $r->customer->DOB;
     $name = $r->customer->name;
     $email = $r->customer->email;
-    $address = $r->customer->address;
+    try {
+      $address = $r->customer->address;
+    } catch (Exception $e) {
+      $address = "";
+    }
     $password = $r->customer->password;
-    $companyname = $r->customer->companyname;
-    $teamname = $r->customer->teamname;
-    $teamleadid = $r->customer->teamleadid;
+    try {
+      $companyname = $r->customer->companyname;
+    } catch (Exception $e) {
+      $companyname = "";
+    }
+    try {
+      $teamname = $r->customer->teamname;
+    } catch (Exception $e) {
+      $teamname = "";
+    }
+    try {
+      $teamleadid = $r->customer->teamleadid;
+    } catch (Exception $e) {
+      $teamleadid = "";
+    }
     $role = $r->customer->role;
     $r->customer->active = "0";
     $id_exists = $db->getOneRecord("select teamleadid from teamleadid where teamleadid='$teamleadid'");

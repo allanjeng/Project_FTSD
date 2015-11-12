@@ -1,66 +1,87 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#/dashboard">Dashboard</a>
+        </li>
+        <li class="active">User Management</li>
+    </ul>
+</div>
 <h1>Add Team Leader Id</h1>
 Add team member IDs so future users can automatically become team leaders on sign up.
 <br/>
 <br/>
 <div class="form-group">
 <input type="text"  class="form-control create-project-input" ng-model="teamleadid" placeholder="Team Lead ID" />
-<button class="btn btn-primary" ng-click="addTeamLeadID()" ng-class="{'disabled':!teamleadid.length}">Create Team Lead ID</button>
+<button class="btn btn-primary col-xs-offset-1" ng-click="addTeamLeadID()" ng-class="{'disabled':!teamleadid.length}">Create Team Lead ID</button>
 </div>
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 <h1>Promote Users</h1>
 First, submit company to get list of users for that company.
 <br/>
 <br/>
-<select class="col-sm-1" name="comp" id="comp" ng-model="comp">
+<select class="col-sm-2" name="comp" id="comp" ng-model="comp">
     <option ng-repeat="row in companies" value="{{row}}">{{row}}</option>
 </select>
-<button class="btn btn-primary col-sm-2 btn-sm" ng-click="submitCompany()">Submit Company</button>
+<button class="btn btn-primary col-sm-2 col-xs-offset-1 btn-sm" ng-click="submitCompany()">Submit Company</button>
 
 <br/>
 <br/>
 Team Leaders, can promote to Admin
 <br/>
 <br/>
-<select class="col-sm-1" name="teamleader" id="teamleader" ng-model="teamleader">
+<select class="col-sm-2" name="teamleader" id="teamleader" ng-model="teamleader">
     <option ng-repeat="row in teamleaders" value="{{row}}">{{row}}</option>
 </select>
-<button class="btn btn-primary col-sm-2 btn-sm" ng-click="promoteTL()">Promote Team Lead</button>
+<button class="btn btn-primary col-sm-2 btn-sm col-xs-offset-1" ng-click="promoteTL()">Promote Team Lead</button>
 <br/>
 <br/>
 Team Members, can promote to Team Leader
 <br/>
 <br/>
-<select class="col-sm-1" name="teammember" id="teammember" ng-model="teammember">
+<select class="col-sm-2" name="teammember" id="teammember" ng-model="teammember">
     <option ng-repeat="row in teammembers" value="{{row}}">{{row}}</option>
 </select>
-<button class="btn btn-primary col-sm-2 btn-sm" ng-click="promoteTM()">Promote Team Member</button>
+<button class="btn btn-primary col-sm-2 btn-sm col-xs-offset-1" ng-click="promoteTM()">Promote Team Member</button>
 <br/>
 <br/>
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 <h1>Move Team Leads</h1>
 First, submit company to get list of team leaders for that company.
 <br/>
 <br/>
-<select class="col-sm-1" name="compM" id="compM" ng-model="compM">
+<select class="col-sm-2" name="compM" id="compM" ng-model="compM">
     <option ng-repeat="row in companies" value="{{row}}">{{row}}</option>
 </select>
-<button class="btn btn-primary col-sm-2 btn-sm" ng-click="submitCompanyM()">Submit Company</button>
+<button class="btn btn-primary col-sm-2 btn-sm col-xs-offset-1" ng-click="submitCompanyM()">Submit Company</button>
 <br/>
 <br/>
 Team Leaders, choose to move to other teams.
 <br/>
 <br/>
-<select class="col-sm-1" name="teamleaderM" id="teamleaderM" ng-model="teamleaderM">
+<label class="col-sm-2">User</label>
+<label class="col-sm-2">Move To</label>
+<br/>
+<br/>
+<select class="col-sm-2" name="teamleaderM" id="teamleaderM" ng-model="teamleaderM">
     <option ng-repeat="row in teamleadersM" value="{{row}}">{{row}}</option>
 </select>
-<select class="col-sm-1" name="teamleaderM" id="teamleaderM" ng-model="teamleaderM">
-    <option value="">From</option>
-    <option ng-repeat="row in teamnamesM" value="{{row}}">{{row}}</option>
+<select class="col-sm-2" name="teamnameM" id="teamnameM" ng-model="teamnameM">
+    <option ng-repeat="rows in teamnamesM" value="{{rows}}">{{rows}}</option>
 </select>
-<select class="col-sm-1" name="teamleaderM" id="teamleaderM" ng-model="teamleaderM">
-    <option value="">To</option>
-    <option ng-repeat="row in teamnamesM" value="{{row}}">{{row}}</option>
-</select>
-<button class="btn btn-primary col-sm-2 btn-sm" ng-click="promoteTL()">Move Team Lead</button>
-
+<button class="btn btn-primary col-sm-2 btn-sm col-xs-offset-1" ng-click="moveTL()">Move Team Lead</button>
+<br/>
+<br/>
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 <br/>
 <br/>
 <span class="lbl col-sm-1"> </span><div class="col-sm-7">Back to dashboard? <a href="#/dashboard">Dashboard</a></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

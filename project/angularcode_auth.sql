@@ -19,6 +19,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=187 ;
 
+CREATE TABLE `user_roles` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(150) NOT NULL,
+`teamname` varchar(150) NOT NULL,
+`role` varchar(150) NOT NULL,
+`uid` varchar(500) NOT NULL,
+PRIMARY KEY (`id`)
+)
 --
 -- Dumping data for table `customers_auth`
 --

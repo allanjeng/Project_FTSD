@@ -1,0 +1,116 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#/dashboard">Dashboard</a>
+        </li>
+        <li class="active">Team Member Management</li>
+    </ul>
+</div>
+<h1>Add Free Team Members to Team</h1>
+Below is a table including all members of your team or all team depending on your permissions.
+<br/>
+<br/>
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd)	{
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<table ng-controller="roleManagementCtrl" >
+  <tr >
+    <td>User Name     </td>
+    <td>Team    </td>
+  </tr>
+  <tr ng-repeat="row in teammates">
+    <td ng-repeat="col in row track by $index">
+       {{ col }}
+    </td>
+  </tr>
+</table>
+<br/>
+Below are a list of free users which can be moved to your/a team.
+<br/>
+<br/>
+<label class="col-sm-3">Free Team Member</label>
+<label class="col-sm-2">Move To</label>
+<br/>
+<br/>
+<select class="col-sm-2" name="free_teammate" id="free_teammate" ng-model="free_teammate">
+    <option ng-repeat="row in free_teammates" value="{{row}}">{{row}}</option>
+</select>
+<select class="col-sm-2" name="teamname" id="teamname" ng-model="teamname">
+    <option ng-repeat="rows in teamnames" value="{{rows}}">{{rows}}</option>
+</select>
+<button class="btn btn-primary col-sm-2 btn-sm col-xs-offset-1" ng-click="moveTM()">Move Team Member</button>
+<br/>
+<br/>
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+<h1>Assign Roles to Team Members</h1>
+Below is a table including all team members of your team or all teams depending on your permissions.
+The table shows users which have defined roles. If no roles exist, there will be no members.
+<br/>
+<br/>
+<table ng-controller="roleManagementCtrl" >
+  <tr >
+    <td>User Name</td>
+    <td>Team    </td>
+    <td>Role</td>
+  </tr>
+  <tr ng-repeat="row in roles">
+    <td ng-repeat="col in row track by $index">
+       {{ col }}
+    </td>
+  </tr>
+</table>
+<br/>
+<br/>
+There are users that have no assigned. Assign these users to have designated roles.
+<br/>
+<br/>
+<table ng-controller="roleManagementCtrl" >
+  <tr >
+    <td>No Role Assigned     </td>
+    <td>Team    </td>
+  </tr>
+  <tr ng-repeat="row in free_roles">
+    <td ng-repeat="col in row track by $index">
+       {{ col }}
+    </td>
+  </tr>
+</table>
+<br/>
+<br/>
+These are all the users, add new roles to the users or assign new roles.
+<br/>
+<br/>
+<label class="col-sm-3">Team Member</label>
+<label class="col-sm-2">New Role</label>
+<br/>
+<br/>
+<select class="col-sm-2" name="free_role" id="free_role" ng-model="free_role">
+    <option ng-repeat="row in teammates" value="{{row[0]}}">{{row[0]}}</option>
+</select>
+<select class="col-sm-2" name="rolechoice" id="rolechoice" ng-model="rolechoice">
+    <option ng-repeat="rows in rolechoices" value="{{rows}}">{{rows}}</option>
+</select>
+<button class="btn btn-primary col-sm-2 btn-sm col-xs-offset-1" ng-click="assignRole()">Assign Role</button>
+<br/>
+<br/>
+<span class="lbl col-sm-1"> </span><div class="col-sm-7">Back to dashboard? <a href="#/dashboard">Dashboard</a></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
