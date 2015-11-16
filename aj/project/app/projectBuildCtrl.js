@@ -17,6 +17,10 @@ app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams,
         title:"Step 4",
         active:false,
         visited:false
+    },{
+        title:"Step 5",
+        active:false,
+        visited:false
     }];
 
 
@@ -44,7 +48,12 @@ app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams,
 
        $location.path( "/dashboard" );   
     }
-
+    $scope.saveModelSelection = function(result){
+        Data.toast(result.selection);
+    }
+    $scope.test = function(model){
+        window.alert(model.selection);
+    }
     $scope.calculatePoints = function(model){
 
         var modelScore = {"Waterfall" : 0, "Optimized_Waterfall" : 0,"RAD" : 0, "Prototyping" : 0, "Agile" : 0};
@@ -452,8 +461,17 @@ app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams,
             modelScore.Agile = modelScore.Agile + ;
         }
         */
-        keysSorted = Object.keys(modelScore).sort(function(a,b){return modelScore[a]-modelScore[b]})
-        
-        window.alert("Suggested Model by Descending Order: " + keysSorted);
+        keysSorted = Object.keys(modelScore).sort(function(a,b){return modelScore[b]-modelScore[a]})
+        $rootScope.option1 = keysSorted[0];
+        $rootScope.option2 = keysSorted[1];
+        $rootScope.option3 = keysSorted[2];
+        $rootScope.option4 = keysSorted[3];
+        $rootScope.option5 = keysSorted[4];
+        $rootScope.score1 = modelScore[keysSorted[0]];
+        $rootScope.score2 = modelScore[keysSorted[1]];
+        $rootScope.score3 = modelScore[keysSorted[2]];
+        $rootScope.score4 = modelScore[keysSorted[3]];
+        $rootScope.score5 = modelScore[keysSorted[4]];
     }
+
 })

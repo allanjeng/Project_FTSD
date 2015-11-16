@@ -1,6 +1,6 @@
 <h1>Create Project</h1>
 <ul class="nav nav-pills">
-  <li ng-repeat="step in steps" role="presentation" ng-class="{'active':step.active,'disabled':!step.active && !step.visited}"><a ng-click="setActiveTab($index);">Step</a></li>
+  <li ng-repeat="step in steps" role="presentation" ng-class="{'active':step.active,'disabled':!step.active && !step.visited}"><a ng-click="setActiveTab($index);">{{step.title}}</a></li>
 </ul>
 
 <div ng-if="steps[0].active">
@@ -400,6 +400,25 @@
 
 <div ng-if="steps[3].active">
   <h4>Step 4</h4>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label>Model Selection</label></br>
+      <input type="radio" name="modelSelect" ng-model="result.selection" value={{option1}}>{{option1}} has a score of: {{score1}}</br>
+      <input type="radio" name="modelSelect" ng-model="result.selection" value={{option2}}>{{option2}} has a score of: {{score2}}</br>
+      <input type="radio" name="modelSelect" ng-model="result.selection" value={{option3}}>{{option3}} has a score of: {{score3}}</br>
+      <input type="radio" name="modelSelect" ng-model="result.selection" value={{option4}}>{{option4}} has a score of: {{score4}}</br>
+      <input type="radio" name="modelSelect" ng-model="result.selection" value={{option5}}>{{option5}} has a score of: {{score5}}
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" ng-click="setActiveTab(4);saveModelSelection(result)">Next</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div ng-if="steps[4].active">
+  <h4>Step 5</h4>
     <form class="form-horizontal">
     <div class="form-group">
       <label for="inputPassword3" class="col-sm-2 control-label">Final Attribute</label>
