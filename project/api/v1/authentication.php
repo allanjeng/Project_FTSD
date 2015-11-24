@@ -67,8 +67,15 @@ $app->post('/signUp', function() use ($app) {
     } catch (Exception $e) {
       $mobile_phone = "";
     }
-
+    $format = 'm/d/Y';
     $DOB = $r->customer->DOB;
+    $d = DateTime::createFromFormat($format, $DOB);
+    if (!($d && $d->format($format) == $DOB)) {
+      $response["status"] = "error";
+      $response["message"] = "Invalid Date of Birth";
+      echoResponse(201, $response);
+      $app->stop();
+    }
     $name = $r->customer->name;
     $email = $r->customer->email;
     try {
@@ -77,6 +84,18 @@ $app->post('/signUp', function() use ($app) {
       $address = "";
     }
     $password = $r->customer->password;
+    if (strtolower($password) == $password){
+        $response["status"] = "error";
+        $response["message"] = "Need at least 1 capital letter in password";
+        echoResponse(201, $response);
+        $app->stop();
+    }
+    if (!(preg_match('/[0-9]+/', $password))) {
+        $response["status"] = "error";
+        $response["message"] = "Need at least 1 number in password";
+        echoResponse(201, $response);
+        $app->stop();
+    }
     try {
       $companyname = $r->customer->companyname;
     } catch (Exception $e) {
@@ -96,7 +115,7 @@ $app->post('/signUp', function() use ($app) {
     $r->customer->active = "0";
     $id_exists = $db->getOneRecord("select teamleadid from teamleadid where teamleadid='$teamleadid'");
     $isUserExists = $db->getOneRecord("select 1 from users where email='$email'");
-    if(!$isUserExists && ($id_exists || ($role == 'team_member'))) {
+    if(!$isUserExists && ($id_exists || ($role == 'team_member')) && ($role != 'admin')) {
         $r->customer->password = passwordHash::hash($password);
         $tabble_name = "users";
         $column_names = array('work_phone', 'mobile_phone', 'name', 'email', 'password', 'address', 'DOB', 'role', 'teamleadid', 'teamname', 'companyname', 'active');
@@ -135,6 +154,9 @@ $app->post('/signUp', function() use ($app) {
         $response["message"] = "An user with the provided phone or email exists!";
         if (!$id_exists && ($role == 'team_lead')) {
           $response["message"] = "Invalid Team Lead Id used.";
+        }
+        if ($role == 'admin') {
+          $response["message"] = "Invalid Admin Id used.";
         }
         echoResponse(201, $response);
     }
@@ -196,6 +218,18 @@ $app->post('/resetPassword', function () use ($app) {
     $response = array();
     $r = json_decode($app->request->getBody());
     $password_non = $r->password;
+    if (strtolower($password) == $password_non){
+        $response["status"] = "error";
+        $response["message"] = "Need at least 1 capital letter in password";
+        echoResponse(201, $response);
+        $app->stop();
+    }
+    if (!(preg_match('/[0-9]+/', $password_non))) {
+        $response["status"] = "error";
+        $response["message"] = "Need at least 1 number in password";
+        echoResponse(201, $response);
+        $app->stop();
+    }
     $password = passwordHash::hash($password_non);
     $key = $r->key;
     $db = new DbHandler();

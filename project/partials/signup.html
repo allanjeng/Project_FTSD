@@ -112,9 +112,20 @@
                                             </span>
                                 </div>
                             </div>
+                            <div ng-if="signup.role=='admin'" class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="adminid">Admin Id</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Team Lead Id" ng-model="signup.adminid">
+                                            </span>
+                                </div>
+                            </div>
                             <div class="input-group">
                                 <label class="col-sm-5 control-label no-padding-right col-sm-offset-6" for="role">Role*</label>
                                 <div class="btn-group col-sm-offset-7 " role="group">
+                                  <label class="btn btn-default">
+                                    <input type="radio" name="options" ng-model="signup.role"  value="admin"> Admin
+                                  </label>
                                   <label class="btn btn-default">
                                     <input type="radio" name="options" ng-model="signup.role" value="team_lead"> Team Lead
                                   </label>

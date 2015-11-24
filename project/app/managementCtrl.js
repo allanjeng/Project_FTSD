@@ -55,6 +55,10 @@ app.controller('roleManagementCtrl', function ($scope, $rootScope, $routeParams,
   }
 
   $scope.moveTM = function (comp) {
+    var r = confirm("Move " + $scope.free_teammate + " to " + $scope.teamname + "?");
+    if (r == false) {
+      return;
+    }
     Data.post('moveTM', {
       tm:$scope.free_teammate,
       tn:$scope.teamname
@@ -64,6 +68,10 @@ app.controller('roleManagementCtrl', function ($scope, $rootScope, $routeParams,
   }
 
   $scope.assignRole = function (comp) {
+    var r = confirm("Assign role " + $scope.rolechoice + " to " + $scope.free_role + "?");
+    if (r == false) {
+      return;
+    }
     Data.post('assignRole', {
       fr:$scope.free_role,
       rc:$scope.rolechoice
@@ -126,6 +134,10 @@ app.controller('userManagmentCtrl', function ($scope, $rootScope, $routeParams, 
   }
 
   $scope.promoteTL = function (comp) {
+    var r = confirm("Promote " + $scope.teamleader + "?");
+    if (r == false) {
+      return;
+    }
     Data.post('promoteTL', {
       tl:$scope.teamleader
     }).then(function (results) {
@@ -134,6 +146,10 @@ app.controller('userManagmentCtrl', function ($scope, $rootScope, $routeParams, 
   }
 
   $scope.promoteTM = function (comp) {
+    var r = confirm("Promote " + $scope.teammember + "?");
+    if (r == false) {
+      return;
+    }
     Data.post('promoteTM', {
       tm:$scope.teammember
     }).then(function (results) {
@@ -170,6 +186,10 @@ app.controller('userManagmentCtrl', function ($scope, $rootScope, $routeParams, 
   }
 
   $scope.moveTL = function (comp) {
+    var r = confirm("Move " + $scope.teamleaderM + "?");
+    if (r == false) {
+      return;
+    }
     Data.post('moveTL', {
       tn:$scope.teamnameM,
       tl:$scope.teamleaderM
