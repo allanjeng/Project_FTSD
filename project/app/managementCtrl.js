@@ -67,6 +67,18 @@ app.controller('roleManagementCtrl', function ($scope, $rootScope, $routeParams,
     });
   }
 
+  $scope.removeTM = function (comp) {
+    var r = confirm("Remove " + $scope.teammatess + "?");
+    if (r == false) {
+      return;
+    }
+    Data.post('removeTM', {
+      tm:$scope.teammatess
+    }).then(function (results) {
+        Data.toast(results)
+    });
+  }
+
   $scope.assignRole = function (comp) {
     var r = confirm("Assign role " + $scope.rolechoice + " to " + $scope.free_role + "?");
     if (r == false) {

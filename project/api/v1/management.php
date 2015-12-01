@@ -169,6 +169,23 @@ $app->post('/moveTM', function () use ($app) {
   echoResponse(200, $response);
 });
 
+$app->post('/removeTM', function () use ($app) {
+  $response = array();
+  $r = json_decode($app->request->getBody());
+  $tm = $r->tm;
+  if ($tm == "") {
+    $response["status"] = "error";
+    $response["message"] = "Cannot remove '$tm' Select valid teammate.";
+    echoResponse(200, $response);
+    $app->stop();
+  }
+  $db = new DbHandler();
+  $db->updateOneRecord("update users set teamname = NULL where name='$tm'");
+  $response["status"] = "success";
+  $response["message"] = "Removed '$tm'";
+  echoResponse(200, $response);
+});
+
 $app->post('/assignRole', function () use ($app) {
   $response = array();
   $r = json_decode($app->request->getBody());
