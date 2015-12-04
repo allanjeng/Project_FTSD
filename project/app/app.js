@@ -58,6 +58,16 @@ app.config(['$routeProvider',
                 controller: 'userManagmentCtrl',
                 templateUrl: 'partials/user_managment.html'
             })
+            .when('/project_management', {
+                title: 'Project Management',
+                controller: 'projectManageCtrl',
+                templateUrl: 'partials/project_management.html'
+            })
+            .when('/questionnaire', {
+                title: 'Questionnaire',
+                controller: 'questionnaireCtrl',
+                templateUrl: 'partials/questionnaire.html'
+            })
             .when('/', {
                 title: 'Login',
                 templateUrl: 'partials/login.html',

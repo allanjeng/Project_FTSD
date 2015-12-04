@@ -8,46 +8,16 @@
             <i class="ace-icon fa fa-home home-icon"></i>
             <a href="#/dashboard">Dashboard</a>
         </li>
-        <li class="active">Project Builder</li>
+        <li class="active">Questionnaire</li>
     </ul>
 </div>
-<h1>Create Project</h1>
+<h1>Redo Questionnaire</h1>
 <ul class="nav nav-pills">
   <li ng-repeat="step in steps" role="presentation" ng-class="{'active':step.active,'disabled':!step.active && !step.visited}"><a ng-click="setActiveTab($index);">{{step.title}}</a></li>
 </ul>
 
 <div ng-if="steps[0].active">
-  <h4>Step 1</h4>
-  
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="inputEmail3" class="col-sm-2 control-label">Project Owner ID:</label>
-      <div class="col-sm-10">
-        <label class="form-control" id="uid">{{uid}}</label>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputEmail3" class="col-sm-2 control-label">Project Name</label>
-      <div class="col-sm-10">
-        <input  class="form-control" placeholder="Project Name" ng-model="projectName" id="projectName">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword3" class="col-sm-2 control-label">Project Description</label>
-      <div class="col-sm-10">
-        <input  class="form-control"  placeholder="Project Description" ng-model="projectDescription" id="projectDesc">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-primary" ng-click="setActiveTab(1);getNameandDesc()">Next</button>
-      </div>
-    </div>
-  </form>
-</div>
-
-<div ng-if="steps[1].active">
-	<h4>Step 2</h4>
+	<h4>Redo Questionnaire</h4>
 	<form class="form-horizontal">
 		<label>Questions</label>
       <div class="form-question">
@@ -356,18 +326,18 @@
           <input type="radio" name="question57" ng-model="model.question57"  value="false"> No
       </div></br>
    		<div class="form-group">
-     		<div class=" col-sm-10">
-        		<button type="submit" class="btn btn-primary" ng-click="setActiveTab(2);calculatePoints(model)">Next</button>
+     		<div class="col-sm-10">
+        		<button type="submit" class="btn btn-primary" ng-click="setActiveTab(1);calculatePoints(model)">Next</button>
       		</div>
     	</div>
   	</form>
 </div>
 
-<div ng-if="steps[2].active">
-  <h4>Step 3</h4>
+<div ng-if="steps[1].active">
+  <h4>Select Model</h4>
   <form class="form-horizontal">
     <div class="form-group">
-      <div class=" col-sm-10">
+      <<div class=" col-sm-10">
         <label>Model Selection</label></br>
         <label>{{option1}} has a score of: {{score1}}</label>
         </br>
@@ -388,8 +358,8 @@
       </div>
     </div>
     <div class="form-group">
-      <div class=" col-sm-10">
-        <button type="submit" class="btn btn-primary" ng-click="saveProject()">Submit</button>
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary" ng-click="updateModel()">Submit</button>
       </div>
     </div>
   </form>

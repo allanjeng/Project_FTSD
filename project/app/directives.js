@@ -38,16 +38,6 @@ app.directive('createProject', ['$location','$http',function ($location,$http) {
         link: function (scope, elem , attrs,control) {
             scope.projectName="";
             scope.createProject = function(){
-
-            /*  $http({ method: 'POST',
-                      url: '/someUrl'
-                      data: {projectName:scope.projectName}
-                      }).then(function successCallback(response) {
-                          $location.path( "/project_builder/" + response.id );
-                      }, function errorCallback(response) {
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
-                      });  */
                console.log($location,$http);
                $location.path( "/project_builder" );
             }.bind(this);

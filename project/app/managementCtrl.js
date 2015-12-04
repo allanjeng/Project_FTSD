@@ -117,6 +117,7 @@ app.controller('userManagmentCtrl', function ($scope, $rootScope, $routeParams, 
     });
   }
 
+  
   $scope.submitCompany = function (comp) {
     Data.post('getUsers', {
       company:$scope.comp

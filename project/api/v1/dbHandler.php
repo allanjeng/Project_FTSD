@@ -28,6 +28,14 @@ class DbHandler {
         $r = $this->conn->query($query) or die($this->conn->error.__LINE__);
         return $result = $r->fetch_all();
     }
+     public function getRecordsAlt($query) {
+        $r = $this->conn->query($query) or die($this->conn->error.__LINE__);
+        $result = array();
+        while($row = $r->fetch_assoc()){
+            $result[]=$row;
+        }
+        return $result;
+    }
     /**
      * Creating new record
      */

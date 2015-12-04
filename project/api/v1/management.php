@@ -30,6 +30,59 @@ $app->post('/getCompanies', function () use ($app) {
   echoResponse(200, $response);
 });
 
+$app->post('/getProjects', function() use ($app){
+    $response = array();
+    $db = new DbHandler();
+    
+    $session = $db->getSession();
+    $uid = $session['uid'];
+     
+    
+    $result = $db->getRecordsAlt("select project_name, project_id, project_model from project where project_owner='$uid'");
+   
+    $response["projects"] = $result;
+    
+    $response["status"] = "success";
+    echoResponse(200, $response);
+});
+
+$app->post('/changeName', function () use ($app) {
+  $response = array();
+  $r = json_decode($app->request->getBody());
+  $projectId = $r->projectId;
+  $projectName = $r->projectName;
+  
+  if ($projectName == "") {
+    $response["status"] = "error";
+    $response["message"] = "Project Name cannot be empty.";
+    echoResponse(200, $response);
+    $app->stop();
+  }
+  $db = new DbHandler();
+  $db->updateOneRecord("update project set project_name = '$projectName' where project_id='$projectId'");
+  $response["status"] = "success";
+  $response["message"] = "Update Project Name to '$projectName'";
+  echoResponse(200, $response);
+});
+$app->post('/updateModel', function () use ($app) {
+  $response = array();
+  $r = json_decode($app->request->getBody());
+  $projectId = $r->projectId;
+  $projectModel = $r->projectModel;
+  
+  if ($projectModel == "") {
+    $response["status"] = "error";
+    $response["message"] = "Project Name cannot be empty.";
+    echoResponse(200, $response);
+    $app->stop();
+  }
+  $db = new DbHandler();
+  $db->updateOneRecord("update project set project_model = '$projectModel' where project_id='$projectId'");
+  $response["status"] = "success";
+  $response["message"] = "Update Project Model to '$projectModel'";
+  echoResponse(200, $response);
+});
+
 $app->post('/getUsers', function () use ($app) {
   $response = array();
   $r = json_decode($app->request->getBody());
@@ -203,4 +256,31 @@ $app->post('/assignRole', function () use ($app) {
   $response["message"] = "Assigned role";
   echoResponse(200, $response);
 });
+
+$app->post('/createProject', function () use ($app) {
+  $response = array();
+  $r = json_decode($app->request->getBody());
+
+  if (!isset($r->projectName) OR $r->projectName=="" OR $r->projectModel==""){
+    $response["status"] = "error";
+    $response["message"] = "You need to input projectName, and select a model of your choice.";
+    echoResponse(200, $response);
+    $app->stop();
+  }
+  $projectName = $r->projectName;
+  $projectModel = $r->projectModel;
+  $projectOwner = $r->projectOwner;
+  $projectDescription = $r->projectDes;
+  
+  $db = new DbHandler();
+  $confirm_tabble_name = "project";
+  $confirm_column_names  = array('project_name', 'project_owner', 'project_description', 'project_model');
+  $content = array('project_name' => $projectName, 'project_owner' => $projectOwner, 'project_model' => $projectModel, 'project_description' => $projectDescription);
+  $object = json_decode(json_encode($content), FALSE);
+  $plz = $db->insertIntoTable($object, $confirm_column_names, $confirm_tabble_name);
+  $response["status"] = "success";
+  $response["message"] = "Project Created.";
+  echoResponse(200, $response);
+});
+
 ?>

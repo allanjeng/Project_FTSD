@@ -55,4 +55,7 @@
   <script src="app/authCtrl.js"></script>
   <script src="app/forgotPasswordCtrl.js"></script>
   <script src="app/managementCtrl.js"></script>
+  <script src="app/projectBuildCtrl.js"></script>
+  <script src="app/projectManageCtrl.js"></script>
+  <script src="app/questionnaireCtrl.js"></script>
 </html>
