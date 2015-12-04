@@ -2,7 +2,7 @@
     <ul class="breadcrumb">
         <li>
             <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="#">Home</a>
+            <a href="#/dashboard">Home</a>
         </li>
         <li class="active">Dashboard</li>
     </ul>
@@ -15,16 +15,29 @@
                 <div class="widget-body">
                     <div class="widget-main">
                         <h4 class="header blue lighter bigger">
-                    <i class="icon-coffee green"></i>
-                    User Authenticated
-                </h4>
-
-                <create-project></create-project>
+                          <i class="icon-coffee green"></i>
+                            User Authenticated
+                        </h4>
                         <div class="space-16"></div>
                         UID: {{uid}}
                         <br/>NAME: {{name}}
                         <br/>E-MAIL: {{email}}
+                        <br/>ACNT ROLE: {{role}}
                         <br/>
+                        <div ng-if="role == 'team_lead' || role == 'admin'">
+                          <br/>
+                          <button class="btn btn-primary" go-click="/team_member_role_management">Team Member Management</button>
+                          <br/>
+                          <br/>
+                          <button class="btn btn-primary" go-click="/project_management">Project Management</button>
+                          <br/>
+                        </div>
+                        <div ng-if="role == 'admin'">
+                          <br/>
+                          <button class="btn btn-primary" go-click="/user_managment">User Management</button>
+                          <br/>
+                          <br/>
+                        </div>
                         <a ng-click="logout();">Logout</a>
                     </div>
                 </div>

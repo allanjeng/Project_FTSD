@@ -1,26 +1,16 @@
-app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data, $log) {
+app.controller('questionnaireCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data, $log) {
     
   // $scope.id = $routeParams.id
     $scope.form = {};
     $scope.steps = [{
-        title:"Step 1",
+        title:"Questionnaire",
         active:true,
         visited:true
     },{
-        title:"Step 2",
-        active:false,
-        visited:false
-    },{
-        title:"Step 3",
+        title:"Select Model",
         active:false,
         visited:false
     }];
-
-    $scope.getNameandDesc = function(){
-        $scope.projectNameSet = document.getElementById("projectName").value
-        $scope.projectDescSet = document.getElementById("projectDesc").value
-        $scope.uid = document.getElementById("uid").textContent;
-    }
 
     $scope.setActiveTab = function($index){
         $scope.steps.forEach(function(step,index){
@@ -34,17 +24,15 @@ app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams,
     }
     //$scope.model = {choice: '$rootScope.option1'};
     $scope.models = ['Waterfall', 'RAD', 'Agile', "Prototyping", "Optimized Waterfall"]
-    $scope.saveProject = function(){
+    $scope.updateModel = function(){
         var r = confirm("Are you sure?");
         if(r==true){
             var choice = document.getElementById("choice");
             var selected = choice.options[choice.selectedIndex].text;
 
-            Data.post('createProject', {
+            Data.post('updateModel', {
                 projectModel: selected,
-                projectName: $scope.projectNameSet,
-                projectDes: $scope.projectDescSet,
-                projectOwner: $scope.uid
+                projectId: $rootScope.projectID
             }).then(function (results) {
                 Data.toast(results);
             });

@@ -17,6 +17,25 @@ class DbHandler {
         $r = $this->conn->query($query.' LIMIT 1') or die($this->conn->error.__LINE__);
         return $result = $r->fetch_assoc();
     }
+
+    public function oneRecord($query) {
+        $r = $this->conn->query($query.' LIMIT 1') or die($this->conn->error.__LINE__);
+    }
+    /**
+    * get many records
+    */
+    public function getRecords($query) {
+        $r = $this->conn->query($query) or die($this->conn->error.__LINE__);
+        return $result = $r->fetch_all();
+    }
+     public function getRecordsAlt($query) {
+        $r = $this->conn->query($query) or die($this->conn->error.__LINE__);
+        $result = array();
+        while($row = $r->fetch_assoc()){
+            $result[]=$row;
+        }
+        return $result;
+    }
     /**
      * Creating new record
      */
@@ -61,6 +80,7 @@ public function getSession(){
         $sess["uid"] = $_SESSION['uid'];
         $sess["name"] = $_SESSION['name'];
         $sess["email"] = $_SESSION['email'];
+        $sess["role"] = $_SESSION['role'];
     }
     else
     {
@@ -79,6 +99,7 @@ public function destroySession(){
         unset($_SESSION['uid']);
         unset($_SESSION['name']);
         unset($_SESSION['email']);
+        unset($_SESSION['role']);
         $info='info';
         if(isSet($_COOKIE[$info]))
         {

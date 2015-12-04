@@ -32,7 +32,7 @@
                                 <div class="col-sm-7">
                                     <span class="block input-icon input-icon-right">
                                 <input type="password" class="form-control" name = "password" placeholder="Password" ng-model="signup.password" required/>
-                                <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small>
+                                <small class="errorMessage" data-ng-show="signupForm.password.$error.required"> Must include 1 capital and 1 number</small>
                             </span>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-5 control-label no-padding-right" for="work_phone">Work Phone</label>
+                                <label class="col-sm-5 control-label no-padding-right" for="work_phone">Work Phone*</label>
                                 <div class="col-sm-7">
                                     <span class="block input-icon input-icon-right">
                                 <input type="text" class="form-control" placeholder="Work Phone" name="work_phone" ng-model="signup.work_phone"/>
@@ -88,9 +88,44 @@
                             </span>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="companyname">Company Name*</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Company Name" ng-model="signup.companyname">
+                                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="teamname">Team Name</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Team Name" ng-model="signup.teamname">
+                                            </span>
+                                </div>
+                            </div>
+                            <div ng-if="signup.role=='team_lead'" class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="teamleadid">Team Lead Id</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Team Lead Id" ng-model="signup.teamleadid">
+                                            </span>
+                                </div>
+                            </div>
+                            <div ng-if="signup.role=='admin'" class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="adminid">Admin Id</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Team Lead Id" ng-model="signup.adminid">
+                                            </span>
+                                </div>
+                            </div>
                             <div class="input-group">
                                 <label class="col-sm-5 control-label no-padding-right col-sm-offset-6" for="role">Role*</label>
                                 <div class="btn-group col-sm-offset-7 " role="group">
+                                  <label class="btn btn-default">
+                                    <input type="radio" name="options" ng-model="signup.role"  value="admin"> Admin
+                                  </label>
                                   <label class="btn btn-default">
                                     <input type="radio" name="options" ng-model="signup.role" value="team_lead"> Team Lead
                                   </label>
