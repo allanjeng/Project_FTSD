@@ -1,0 +1,367 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#/dashboard">Dashboard</a>
+        </li>
+        <li class="active">Questionnaire</li>
+    </ul>
+</div>
+<h1>Redo Questionnaire</h1>
+<ul class="nav nav-pills">
+  <li ng-repeat="step in steps" role="presentation" ng-class="{'active':step.active,'disabled':!step.active && !step.visited}"><a ng-click="setActiveTab($index);">{{step.title}}</a></li>
+</ul>
+
+<div ng-if="steps[0].active">
+	<h4>Redo Questionnaire</h4>
+	<form class="form-horizontal">
+		<label>Questions</label>
+      <div class="form-question">
+        <label>How many people will be working on the project?</label></br>
+        <input type="text" placeholder = "number" ng-model="model.numTeamMem">
+      </div></br>
+      <div class="form-question">
+        <label>What is the scope of your project?</label></br>
+        <input type="text" placeholder = "scope" ng-model="model.scope">
+      </div></br>
+	    <div class="form-question">
+    		<label>What is the budget of the project?</label></br>
+   	 		<input type="text" placeholder = "amount" ng-model="model.budget">
+	    </div></br>
+      <div class="form-question">
+      	<label>Do you have ample resources?</label></br>
+     	 	<input type="radio" name="question1" ng-model="model.question1" value="true"> Yes
+	      <input type="radio" name="question1" ng-model="model.question1"  value="false"> No
+      </div></br>
+      <div class="form-question">
+    		<label>Is cost evaluation important?</label></br>
+   	 		<input type="radio" name="question2" ng-model="model.question2" value="true"> Yes
+        <input type="radio" name="question2" ng-model="model.question2"  value="false"> No
+      </div></br>
+	    <div class="form-question">
+      		<label>Do you want lower initial cost?</label></br>
+     	 		<input type="radio" name="question3" ng-model="model.question3" value="true"> Yes
+	        <input type="radio" name="question3" ng-model="model.question3"  value="false"> No
+	    </div></br>
+      <div class="form-question">
+          <label>What is the time span of the project?</label></br>
+          <input type="text" placeholder = "Months" ng-model="model.timeSpan">
+      </div></br>
+      <div class="form-question">
+          <label>How early do you want your software in its lifecycle?</label></br>
+          <input type="text" placeholder = "# weeks" ng-model="model.lifecycle">
+      </div></br>
+      <div class="form-question">
+          <label>Do you wish to reduce development time?</label></br>
+          <input type="radio" name="question4" ng-model="model.question4" value="true"> Yes
+          <input type="radio" name="question4" ng-model="model.question4"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want smaller iterations?</label></br>
+          <input type="radio" name="question5" ng-model="model.question5" value="true"> Yes
+          <input type="radio" name="question5" ng-model="model.question5"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want a prototype?</label></br>
+          <input type="radio" name="question6" ng-model="model.question6" value="true"> Yes
+          <input type="radio" name="question6" ng-model="model.question6"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you know all the requirements?</label></br>
+          <input type="radio" name="question7" ng-model="model.question7" value="true"> Yes
+          <input type="radio" name="question7" ng-model="model.question7"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Are there ambiguous requirements?</label></br>
+          <input type="radio" name="question8" ng-model="model.question8" value="true"> Yes
+          <input type="radio" name="question8" ng-model="model.question8"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Does your project change circumstances regularly?</label></br>
+          <input type="radio" name="question9" ng-model="model.question9" value="true"> Yes
+          <input type="radio" name="question9" ng-model="model.question9"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want to allow late changes in requirements?</label></br>
+          <input type="radio" name="question10" ng-model="model.question10" value="true"> Yes
+          <input type="radio" name="question10" ng-model="model.question10"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Does your customer clearly know what they want?</label></br>
+          <input type="radio" name="question11" ng-model="model.question11" value="true"> Yes
+          <input type="radio" name="question11" ng-model="model.question11"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Are you constantly changing your goals?</label></br>
+          <input type="radio" name="question12" ng-model="model.question12" value="true"> Yes
+          <input type="radio" name="question12" ng-model="model.question12"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Are your requirements easily understood?</label></br>
+          <input type="radio" name="question13" ng-model="model.question13" value="true"> Yes
+          <input type="radio" name="question13" ng-model="model.question13"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Are significant changes expected?</label></br>
+          <input type="radio" name="question14" ng-model="model.question14" value="true"> Yes
+          <input type="radio" name="question14" ng-model="model.question14"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Is your product definition stable?</label></br>
+          <input type="radio" name="question15" ng-model="model.question15" value="true"> Yes
+          <input type="radio" name="question15" ng-model="model.question15"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Is your product using a new technology?</label></br>
+          <input type="radio" name="question16" ng-model="model.question16" value="true"> Yes
+          <input type="radio" name="question16" ng-model="model.question16"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Is the technology you’re using understood?</label></br>
+          <input type="radio" name="question17" ng-model="model.question17" value="true"> Yes
+          <input type="radio" name="question17" ng-model="model.question17"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Can your system be modularized?</label></br>
+          <input type="radio" name="question18" ng-model="model.question18" value="true"> Yes
+          <input type="radio" name="question18" ng-model="model.question18"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you need to modularize your product?</label></br>
+          <input type="radio" name="question19" ng-model="model.question19" value="true"> Yes
+          <input type="radio" name="question19" ng-model="model.question19"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Will you be reusing components?</label></br>
+          <input type="radio" name="question20" ng-model="model.question20" value="true"> Yes
+          <input type="radio" name="question20" ng-model="model.question20"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want quick initial reviews?</label></br>
+          <input type="radio" name="question21" ng-model="model.question21" value="true"> Yes
+          <input type="radio" name="question21" ng-model="model.question21"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you or your customer want to constantly interact with each other?</label></br>
+          <input type="radio" name="question22" ng-model="model.question22" value="true"> Yes
+          <input type="radio" name="question22" ng-model="model.question22"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you prefer to have face-to-face conversation?</label></br>
+          <input type="radio" name="question23" ng-model="model.question23" value="true"> Yes
+          <input type="radio" name="question23" ng-model="model.question23"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Does your business team interact with your developer frequently?</label></br>
+          <input type="radio" name="question24" ng-model="model.question24" value="true"> Yes
+          <input type="radio" name="question24" ng-model="model.question24"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want quicker user feedback?</label></br>
+          <input type="radio" name="question25" ng-model="model.question25" value="true"> Yes
+          <input type="radio" name="question25" ng-model="model.question25"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Are your users actively involved in development?</label></br>
+          <input type="radio" name="question26" ng-model="model.question26" value="true"> Yes
+          <input type="radio" name="question26" ng-model="model.question26"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Does your project need to have a lot of interaction with end users?</label></br>
+          <input type="radio" name="question27" ng-model="model.question27" value="true"> Yes
+          <input type="radio" name="question27" ng-model="model.question27"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Does the user know their needs?</label></br>
+          <input type="radio" name="question28" ng-model="model.question28" value="true"> Yes
+          <input type="radio" name="question28" ng-model="model.question28"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want to encourage customers to give feedback?</label></br>
+          <input type="radio" name="question29" ng-model="model.question29" value="true"> Yes
+          <input type="radio" name="question29" ng-model="model.question29"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Are your developers highly skilled?</label></br>
+          <input type="radio" name="question30" ng-model="model.question30" value="true"> Yes
+          <input type="radio" name="question30" ng-model="model.question30"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you have a strong team?</label></br>
+          <input type="radio" name="question31" ng-model="model.question31" value="true"> Yes
+          <input type="radio" name="question31" ng-model="model.question31"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Does the project require modeling?</label></br>
+          <input type="radio" name="question32" ng-model="model.question32" value="true"> Yes
+          <input type="radio" name="question32" ng-model="model.question32"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>How good is your modeling skill?</label></br>
+          <input type="radio" name="question33" ng-model="model.question33" value="true"> Yes
+          <input type="radio" name="question33" ng-model="model.question33"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want a simple and easy model?</label></br>
+          <input type="radio" name="question34" ng-model="model.question34" value="true"> Yes
+          <input type="radio" name="question34" ng-model="model.question34"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you wish to deliver useful software continuously to your customer?</label></br>
+          <input type="radio" name="question35" ng-model="model.question35" value="true"> Yes
+          <input type="radio" name="question35" ng-model="model.question35"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Would you like to emphasize on documentation?</label></br>
+          <input type="radio" name="question36" ng-model="model.question36" value="true"> Yes
+          <input type="radio" name="question36" ng-model="model.question36"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you expect to change documentation in the middle of the project?</label></br>
+          <input type="radio" name="question37" ng-model="model.question37" value="true"> Yes
+          <input type="radio" name="question37" ng-model="model.question37"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Would you like to emphasize on design?</label></br>
+          <input type="radio" name="question38" ng-model="model.question38" value="true"> Yes
+          <input type="radio" name="question38" ng-model="model.question38"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you have a high-level design of the application?</label></br>
+          <input type="radio" name="question39" ng-model="model.question39" value="true"> Yes
+          <input type="radio" name="question39" ng-model="model.question39"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Are there decision makers in your development team?</label></br>
+          <input type="radio" name="question40" ng-model="model.question40" value="true"> Yes
+          <input type="radio" name="question40" ng-model="model.question40"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Is your project dynamic?</label></br>
+          <input type="radio" name="question41" ng-model="model.question41" value="true"> Yes
+          <input type="radio" name="question41" ng-model="model.question41"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Do you want more freedom with your project?</label></br>
+          <input type="radio" name="question42" ng-model="model.question42" value="true"> Yes
+          <input type="radio" name="question42" ng-model="model.question42"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Is your project flexible?</label></br>
+          <input type="radio" name="question43" ng-model="model.question43" value="true"> Yes
+          <input type="radio" name="question43" ng-model="model.question43"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Is your project rigid?</label></br>
+          <input type="radio" name="question44" ng-model="model.question44" value="true"> Yes
+          <input type="radio" name="question44" ng-model="model.question44"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want the errors to be detected earlier?</label></br>
+          <input type="radio" name="question45" ng-model="model.question45" value="true"> Yes
+          <input type="radio" name="question45" ng-model="model.question45"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Is your project high risk?</label></br>
+          <input type="radio" name="question46" ng-model="model.question46" value="true"> Yes
+          <input type="radio" name="question46" ng-model="model.question46"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Is risk evaluation important?</label></br>
+          <input type="radio" name="question47" ng-model="model.question47" value="true"> Yes
+          <input type="radio" name="question47" ng-model="model.question47"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Does your project depend heavily on approval by management?</label></br>
+          <input type="radio" name="question48" ng-model="model.question48" value="true"> Yes
+          <input type="radio" name="question48" ng-model="model.question48"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you want confusing or difficult functions to be identified?</label></br>
+          <input type="radio" name="question49" ng-model="model.question49" value="true"> Yes
+          <input type="radio" name="question49" ng-model="model.question49"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Can you afford to take high risk?</label></br>
+          <input type="radio" name="question50" ng-model="model.question50" value="true"> Yes
+          <input type="radio" name="question50" ng-model="model.question50"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Do you expect a lot of uncertainty?</label></br>
+          <input type="radio" name="question51" ng-model="model.question51" value="true"> Yes
+          <input type="radio" name="question51" ng-model="model.question51"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Do you wish to avoid downward flow of your defects?</label></br>
+          <input type="radio" name="question52" ng-model="model.question52" value="true"> Yes
+          <input type="radio" name="question52" ng-model="model.question52"  value="false"> No
+      </div></br>
+       <div class="form-question">
+          <label>Are there high risk features?</label></br>
+          <input type="radio" name="question53" ng-model="model.question53" value="true"> Yes
+          <input type="radio" name="question53" ng-model="model.question53"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Are there high risk goals?</label></br>
+          <input type="radio" name="question54" ng-model="model.question54" value="true"> Yes
+          <input type="radio" name="question54" ng-model="model.question54"  value="false"> No
+      </div></br>
+       <div class="form-question">
+          <label>Will you have plans for testing at the beginning of your project?</label></br>
+          <input type="radio" name="question55" ng-model="model.question55" value="true"> Yes
+          <input type="radio" name="question55" ng-model="model.question55"  value="false"> No
+      </div></br>
+     <div class="form-question">
+          <label>Do you need a new product line?</label></br>
+          <input type="radio" name="question56" ng-model="model.question56" value="true"> Yes
+          <input type="radio" name="question56" ng-model="model.question56"  value="false"> No
+      </div></br>
+      <div class="form-question">
+          <label>Is your project mission-critical?</label></br>
+          <input type="radio" name="question57" ng-model="model.question57" value="true"> Yes
+          <input type="radio" name="question57" ng-model="model.question57"  value="false"> No
+      </div></br>
+   		<div class="form-group">
+     		<div class="col-sm-10">
+        		<button type="submit" class="btn btn-primary" ng-click="setActiveTab(1);calculatePoints(model)">Next</button>
+      		</div>
+    	</div>
+  	</form>
+</div>
+
+<div ng-if="steps[1].active">
+  <h4>Select Model</h4>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <<div class=" col-sm-10">
+        <label>Model Selection</label></br>
+        <label>{{option1}} has a score of: {{score1}}</label>
+        </br>
+        <label>{{option2}} has a score of: {{score2}}</label>
+        </br>
+        <label>{{option3}} has a score of: {{score3}}</label>
+        </br>
+        <label>{{option4}} has a score of: {{score4}}</label>
+        </br>
+        <label>{{option5}} has a score of: {{score5}}</label>
+        </br>
+      </div>
+      <div class="col-sm-10">
+        <select class = "form-control" name="choice" id = "choice" ng-model="model.choice">
+            <option ng-repeat="row in models" value="{{row}}">{{row}}</option>
+        </select>
+        </br>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary" ng-click="updateModel()">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
