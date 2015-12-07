@@ -26,4 +26,8 @@ app.controller('projectManageCtrl', function ($scope, $rootScope, $routeParams, 
         var splitted = $scope.project.project.split(":")
         $rootScope.projectID = splitted[2].split("\"")[1]
     }
+    $scope.createProject = function(){
+               console.log($location,$http);
+               $location.path( "/project_builder" );
+    }
 });

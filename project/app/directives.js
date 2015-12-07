@@ -30,21 +30,6 @@ app.directive('passwordMatch', [function () {
     };
 }]);
 
-app.directive('createProject', ['$location','$http',function ($location,$http) {
-    return {
-        restrict: 'E',
-        scope:true,
-        templateUrl:'partials/create_project.html',
-        link: function (scope, elem , attrs,control) {
-            scope.projectName="";
-            scope.createProject = function(){
-               console.log($location,$http);
-               $location.path( "/project_builder" );
-            }.bind(this);
-        }
-    };
-}]);
-
 app.directive( 'goClick', function ( $location ) {
   return function ( scope, element, attrs ) {
     var path;
