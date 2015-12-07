@@ -133,7 +133,7 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                };
                if ($location.$$path == '/notifications')
                {
-               $scope.date = new Date();
+               $scope.date = (new Date()).toString();
                Data.post('getNotifications', {
                          }).then(function (results) {
                                  $scope.not = results.notif
@@ -172,6 +172,14 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
                          notification: $scope.tempnot
                          }).then(function (results) {
                                  $scope.tempNotMessage = results.notmessage
+                                 });
+               }
+               $scope.approveNotification = function () {
+               Data.post('approveNotification', {
+                         notification: $scope.tempnot
+                         }).then(function (results) {
+                                 Data.toast(results);
+                                 //$scope.tempNotMessage = results.notmessage
                                  });
                }
 });

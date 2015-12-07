@@ -100,12 +100,12 @@ app.controller('questionnaireCtrl', function ($scope, $rootScope, $routeParams, 
             modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 5;
             modelScore.RAD = modelScore.RAD + 2;
             modelScore.Prototyping = modelScore.Prototyping + 5;
-            modelScore.Agile = modelScore.Agile + 2;
+            modelScore.Agile = modelScore.Agile + 3;
         }
         if(model.question9=="true"){
             modelScore.Waterfall = modelScore.Waterfall + 2;
             modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 5;
-            modelScore.RAD = modelScore.RAD +4 ;
+            modelScore.RAD = modelScore.RAD + 4 ;
             modelScore.Prototyping = modelScore.Prototyping + 5;
             modelScore.Agile = modelScore.Agile + 2;
         }
