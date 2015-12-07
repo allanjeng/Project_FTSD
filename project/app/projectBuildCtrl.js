@@ -57,7 +57,55 @@ app.controller('projectBuilderCtrl', function ($scope, $rootScope, $routeParams,
     $scope.calculatePoints = function(model){
 
         var modelScore = {"Waterfall" : 0, "Optimized_Waterfall" : 0,"RAD" : 0, "Prototyping" : 0, "Agile" : 0, "Spiral" : 0};
-        
+        if(model.numTeamMem>10)
+        {
+        	modelScore.Waterfall = modelScore.Waterfall + 2;
+            modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 2;
+            modelScore.RAD = modelScore.RAD + 2;
+            modelScore.Prototyping = modelScore.Prototyping + 1;
+            modelScore.Agile = modelScore.Agile + 1;
+            modelScore.Spiral = modelScore.Spiral +  1;
+        }else{
+        	modelScore.Waterfall = modelScore.Waterfall + 1;
+            modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 1;
+            modelScore.RAD = modelScore.RAD + 1;
+            modelScore.Prototyping = modelScore.Prototyping + 1;
+            modelScore.Agile = modelScore.Agile + 3;
+            modelScore.Spiral = modelScore.Spiral +  1;
+        }
+        if(model.budget>10000)
+        {
+        	modelScore.Waterfall = modelScore.Waterfall + 2;
+            modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 2;
+            modelScore.RAD = modelScore.RAD + 2;
+            modelScore.Prototyping = modelScore.Prototyping + 1;
+            modelScore.Agile = modelScore.Agile + 1;
+            modelScore.Spiral = modelScore.Spiral +  1;
+        }else{
+        	modelScore.Waterfall = modelScore.Waterfall + 1;
+            modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 1;
+            modelScore.RAD = modelScore.RAD + 1;
+            modelScore.Prototyping = modelScore.Prototyping + 1;
+            modelScore.Agile = modelScore.Agile + 1;
+            modelScore.Spiral = modelScore.Spiral +  1;
+        }
+        if(model.timeSpan>12)
+        {
+        	modelScore.Waterfall = modelScore.Waterfall + 1;
+            modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 1;
+            modelScore.RAD = modelScore.RAD + 1;
+            modelScore.Prototyping = modelScore.Prototyping + 1;
+            modelScore.Agile = modelScore.Agile + 1;
+            modelScore.Spiral = modelScore.Spiral +  1;
+        }else
+        {
+        	modelScore.Waterfall = modelScore.Waterfall + 2;
+            modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 2;
+            modelScore.RAD = modelScore.RAD + 2;
+            modelScore.Prototyping = modelScore.Prototyping + 2;
+            modelScore.Agile = modelScore.Agile + 2;
+            modelScore.Spiral = modelScore.Spiral +  2;
+        }
         if(model.question1=="true"){
             modelScore.Waterfall = modelScore.Waterfall + 2;
             modelScore.Optimized_Waterfall = modelScore.Optimized_Waterfall + 2;

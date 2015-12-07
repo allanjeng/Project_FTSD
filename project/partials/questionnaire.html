@@ -28,6 +28,14 @@
     		<label>What is the budget of the project?</label></br>
    	 		<input type="text" placeholder = "amount" ng-model="model.budget">
 	    </div></br>
+	    <div class="form-question">
+          <label>What is the time span of the project?</label></br>
+          <input type="text" placeholder = "Months" ng-model="model.timeSpan">
+      </div></br>
+      <div class="form-question">
+          <label>How early do you want your software in its lifecycle?</label></br>
+          <input type="text" placeholder = "# weeks" ng-model="model.lifecycle">
+      </div></br>
       <div class="form-question">
       	<label>Do you have ample resources?</label></br>
      	 	<input type="radio" name="question1" ng-model="model.question1" value="true"> Yes
@@ -43,14 +51,6 @@
      	 		<input type="radio" name="question3" ng-model="model.question3" value="true"> Yes
 	        <input type="radio" name="question3" ng-model="model.question3"  value="false"> No
 	    </div></br>
-      <div class="form-question">
-          <label>What is the time span of the project?</label></br>
-          <input type="text" placeholder = "Months" ng-model="model.timeSpan">
-      </div></br>
-      <div class="form-question">
-          <label>How early do you want your software in its lifecycle?</label></br>
-          <input type="text" placeholder = "# weeks" ng-model="model.lifecycle">
-      </div></br>
       <div class="form-question">
           <label>Do you wish to reduce development time?</label></br>
           <input type="radio" name="question4" ng-model="model.question4" value="true"> Yes
